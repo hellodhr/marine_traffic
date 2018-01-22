@@ -19,9 +19,9 @@ Given a list of vessel identification IDs (IMO), e.g. 9632143, retrieve general 
 * Write data structure to JSON file or database
 
 ## Open points
-* Generate start urls from input file :white_checkmark:
+* Generate start urls from input file :white_check_mark:
 * Clean parsed data :construction:
-* Add Python environment configuration :white_checkmark:
+* Add Python environment configuration :white_check_mark:
 * Add tests based on [pytest](https://docs.pytest.org/en/latest/)
 * Enable continous integration via [Travis CI](https://travis-ci.org)
 * Isolate app in Docker container
