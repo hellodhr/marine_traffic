@@ -2,7 +2,7 @@
 A collection of spiders to crawl data from http://www.marinetraffic.com
 
 ## Usage
-Make sure to create an isolated Python 3.x environment before running the code
+Make sure to create an isolated Python 3.x environment (using [virtualenv](https://virtualenv.pypa.io/en/stable/userguide/#usage) or [conda](https://conda.io/docs/user-guide/tasks/manage-environments.html#)) before running the code
 ```
 # get source code
 mkdir marine_traffic
@@ -19,12 +19,13 @@ pip install -r requirements.txt
 conda env create -n <name of your environment>
 source activate <name of your environment>
 conda env update -f marine_traffic.yml
-
+```
+The file format of the input file is currently hardcoded and expected to contain a column named "Vessel_name" with relevant vessel identification IDs (IMO) for crawling.
+```
 # start crawler
 cd vessel_spider
 scrapy crawl vessel -a filename=<path to input file> -o <output>.json
 ```
-Note: The file format of the input file is currently hardcoded and expected to contain a column named "Vessel_name" with relevant vessel identification IDs (IMO) for crawling.
 
 ## Problem
 Given a list of vessel identification IDs (IMO), e.g. 9632143, retrieve general information under vessel particulars for specific vessels from https://www.marinetraffic.com, store information in data structure and write full result to JSON file or database
