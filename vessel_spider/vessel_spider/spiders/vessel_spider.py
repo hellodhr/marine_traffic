@@ -1,31 +1,31 @@
-import scrapy
+import os
+import fnmatch
 import csv
+import scrapy
+from scrapy.spiders import CrawlSpider, Rule
+from scrapy.linkextractors import LinkExtractor
 
-class VesselSpider(scrapy.Spider):
+class VesselSpider(CrawlSpider):
     name = "vessel"
     allowed_domains = ["marinetraffic.com"]
-    start_urls = []
 
-    # generate start_urls from csv file or use defaults
-    def __init__(self, filename):
-        if filename:
-            with open(filename, newline="") as f:
-                reader = csv.DictReader(f)
-                base_url = "https://www.marinetraffic.com/en/ais/index/search/all?keyword="
-                self.start_urls = [base_url + str(row["Vessel_name"]) for row in reader]
-        else:
-            self.start_urls = [
-                "https://www.marinetraffic.com/en/ais/index/search/imo?keyword=9632143",
-                "https://www.marinetraffic.com/en/ais/index/search/all?keyword=101260"
-            ]
+    # generate start_urls from csv file
+    for file in os.listdir("."):
+        if fnmatch.fnmatch(file, "*.csv"):
+            with open(file, newline="") as f:
+                reader = csv.reader(f)
+                # skip header
+                next(reader, None)
+                # build start_urls from second column of csv file
+                start_urls = ["https://www.marinetraffic.com/en/ais/index/search/all?keyword=" +
+                              str(row[1]) for row in reader]
 
-    def parse(self, response):
+    # define rule to follow links in search result pages
+    rules = (
+        Rule(LinkExtractor(allow=(), restrict_css=("a[class = search_index_link]")), callback="parse_item"),
+    )
 
-        # access search result page
-        # TODO: double-check if parser tries to parse search result page instead of actual content page
-        for result_page in response.css("a[class = search_index_link]::attr(href)"):
-            yield response.follow(result_page, callback=self.parse)
-
+    def parse_item(self, response):
         # parse general information
         info_general = response.xpath("//div[@id='vessel_details_general']")
 
@@ -43,9 +43,7 @@ class VesselSpider(scrapy.Spider):
         clean_keys = [e.replace(":", "").strip().lower() for e in raw_keys]
         clean_values = [e.replace(" ", "_").lower() for e in raw_values]
 
-        # generate output if parsing is successful
-        if len(info_general) > 0:
-
-            yield {
-                k:v for k, v in zip(clean_keys, clean_values)
-            }
+        # generate output TODO: use scrapy items instead of python dicts
+        yield {
+            k:v for k, v in zip(clean_keys, clean_values)
+        }
