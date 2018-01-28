@@ -47,7 +47,7 @@ Given a list of vessel identification IDs (IMO), e.g. 9632143, retrieve general 
 * Improve handling of search result page :white_check_mark:
 * Clean parsed data :white_check_mark:
 * Add Python environment configuration :white_check_mark:
-* Add tests based on ~~[pytest](https://docs.pytest.org/en/latest/)~~ [Scrapy contracts](https://doc.scrapy.org/en/latest/topics/contracts.html) :under_construction:
+* Add tests based on ~~[pytest](https://docs.pytest.org/en/latest/)~~ [Scrapy contracts](https://doc.scrapy.org/en/latest/topics/contracts.html) :construction:
 * Enable continous integration via [Travis CI](https://travis-ci.org) :construction:
 * Isolate app in Docker container :construction:
 * Include instructions for running containerized app on heroku, AWS, Azure and GCP
