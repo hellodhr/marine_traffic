@@ -18,7 +18,7 @@ class VesselSpider(CrawlSpider):
                 next(reader, None)
                 # build start_urls from second column of csv file
                 start_urls = ["https://www.marinetraffic.com/en/ais/index/search/all?keyword=" +
-                              str(row[0]) for row in reader]
+                              str(row[1]) for row in reader]
 
     # define rule to follow links in search result pages
     rules = (
