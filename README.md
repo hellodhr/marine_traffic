@@ -20,11 +20,15 @@ conda env create -n <name of your environment>
 source activate <name of your environment>
 conda env update -f marine_traffic.yml
 ```
-The file format of the input file is currently hardcoded and expected to contain a column named "Vessel_name" with relevant vessel identification IDs (IMO) for crawling.
+The crawler automatically reads an input file (CSV) from the top vessel_spider directory
+By default, the second column of the file is used to extract vessel identification IDs (IMO) for crawling
 ```
-# start crawler
+# copy input file to target directoy
 cd vessel_spider
-scrapy crawl vessel -a filename=<path to input file> -o <output>.json
+cp -v <path to your your input file> .
+
+# start crawler
+scrapy crawl vessel -o <output>.json
 ```
 
 ## Problem
