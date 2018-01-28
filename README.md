@@ -44,11 +44,11 @@ Given a list of vessel identification IDs (IMO), e.g. 9632143, retrieve general 
 
 ## Open points
 * Generate start urls from input file :white_check_mark:
-* Improve handling of search result page :construction:
-* Clean parsed data :construction:
+* Improve handling of search result page :white_check_mark:
+* Clean parsed data :white_check_mark:
 * Add Python environment configuration :white_check_mark:
-* Add tests based on ~~[pytest](https://docs.pytest.org/en/latest/)~~ [Scrapy contracts](https://doc.scrapy.org/en/latest/topics/contracts.html)
-* Enable continous integration via [Travis CI](https://travis-ci.org)
-* Isolate app in Docker container
+* Add tests based on ~~[pytest](https://docs.pytest.org/en/latest/)~~ [Scrapy contracts](https://doc.scrapy.org/en/latest/topics/contracts.html) :under_construction:
+* Enable continous integration via [Travis CI](https://travis-ci.org) :under_construction:
+* Isolate app in Docker container :under_construction:
 * Include instructions for running containerized app on heroku, AWS, Azure and GCP
-* Add spider to parse port data
+* Add spider to parse port data :under_construction:
