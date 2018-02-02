@@ -1,13 +1,14 @@
 # marine_traffic
 A collection of spiders to crawl data from http://www.marinetraffic.com
 
-## Usage
+## Usage 
+# TODO add Windows specific commands
+# TODO ads scrapyd documentation: https://stackoverflow.com/questions/22646323/windows-scrapyd-deploy-is-not-recognized
 Make sure to create an isolated Python 3.x environment (using [virtualenv](https://virtualenv.pypa.io/en/stable/userguide/#usage) or [conda](https://conda.io/docs/user-guide/tasks/manage-environments.html#)) before running the code
 ```
 # get source code
-mkdir marine_traffic
-cd marine_traffic
 git clone https://github.com/slangenbach/marine_traffic.git
+cd marine_traffic
 
 # create isolated environment using virtualenv
 pip install virtualenv
@@ -18,7 +19,7 @@ pip install -r requirements.txt
 # alternatively use conda
 conda env create -n <name of your environment>
 source activate <name of your environment>
-conda env update -f marine_traffic.yml
+conda env update -f conda_<win/osx depending on your operating system>.yml
 ```
 The crawler automatically reads an input file (CSV) from the top vessel_spider directory
 By default, the second column of the file is used to extract vessel identification IDs (IMO) for crawling
