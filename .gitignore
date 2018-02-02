@@ -1,5 +1,6 @@
 # User definied ignores
 data/
+.idea/
 *.csv
 *.json
 
