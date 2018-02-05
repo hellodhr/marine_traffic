@@ -2,33 +2,37 @@
 A collection of spiders to crawl data from http://www.marinetraffic.com
 
 ## Usage 
-# TODO add Windows specific commands
-# TODO ads scrapyd documentation: https://stackoverflow.com/questions/22646323/windows-scrapyd-deploy-is-not-recognized
 Make sure to create an isolated Python 3.x environment (using [virtualenv](https://virtualenv.pypa.io/en/stable/userguide/#usage) or [conda](https://conda.io/docs/user-guide/tasks/manage-environments.html#)) before running the code
+
+### Get source code
 ```
-# get source code
 git clone https://github.com/slangenbach/marine_traffic.git
 cd marine_traffic
-
-# create isolated environment using virtualenv
+```
+### Create isolated environment 
+Using virtualenv:
+```
 pip install virtualenv
 virtualenv <name of your environment>
 source activate <name of your environment>/bin/activate
 pip install -r requirements.txt
-
-# alternatively use conda
+```
+or alternatively using conda:
+```
 conda env create -n <name of your environment>
 source activate <name of your environment>
 conda env update -f conda_<win/osx depending on your operating system>.yml
 ```
+
+### Copy input file to target directoy
 The crawler automatically reads an input file (CSV) from the top vessel_spider directory
 By default, the second column of the file is used to extract vessel identification IDs (IMO) for crawling
 ```
-# copy input file to target directoy
 cd vessel_spider
 cp -v <path to your your input file> .
-
-# start crawler
+```
+### Start crawler
+```
 scrapy crawl vessel -o <output>.json
 ```
 
@@ -51,5 +55,5 @@ Given a list of vessel identification IDs (IMO), e.g. 9632143, retrieve general 
 * Add tests based on ~~[pytest](https://docs.pytest.org/en/latest/)~~ [Scrapy contracts](https://doc.scrapy.org/en/latest/topics/contracts.html) :construction:
 * Enable continous integration via [Travis CI](https://travis-ci.org) :construction:
 * Isolate app in Docker container :construction:
-* Include instructions for running containerized app on heroku, AWS, Azure and GCP
+* Include instructions for running containerized app on heroku, AWS, Azure and GCP :construction:
 * Add spider to parse port data :construction:
