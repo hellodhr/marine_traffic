@@ -1,6 +1,10 @@
 # marine_traffic
 A collection of spiders to crawl data from http://www.marinetraffic.com
 
+## About
+Given a list of unique identifiers, retrieve various information from http://www.marinetraffic.com, store it in data structures and write full result to JSON file. Check out the project's [wiki](https://github.com/slangenbach/marine_traffic/wiki) for further information. Open points are managed via [projects](https://github.com/slangenbach/marine_traffic/projects) and [issues](https://github.com/slangenbach/marine_traffic/issues).
+
+
 ## Usage 
 Make sure to create an isolated Python 3.x environment (using [virtualenv](https://virtualenv.pypa.io/en/stable/userguide/#usage) or [conda](https://conda.io/docs/user-guide/tasks/manage-environments.html#)) before running the code
 
@@ -35,25 +39,3 @@ cp -v <path to your your input file> .
 ```
 scrapy crawl vessel -o <output>.json
 ```
-
-## Problem
-Given a list of vessel identification IDs (IMO), e.g. 9632143, retrieve general information under vessel particulars for specific vessels from https://www.marinetraffic.com, store information in data structure and write full result to JSON file or database
-
-## Solution
-* Read IMOs from input file, e.g. CSV
-* Query information for each IMO via [search url](https://www.marinetraffic.com/en/ais/index/search/all?keyword=)
-* Access [result page](https://www.marinetraffic.com/en/ais/details/ships/shipid:3409595/mmsi:219630000/vessel:9632143)
-* Parse general information
-* Store information in data structure
-* Write data structure to JSON file or database
-
-## Open points
-* Generate start urls from input file :white_check_mark:
-* Improve handling of search result page :white_check_mark:
-* Clean parsed data :white_check_mark:
-* Add Python environment configuration :white_check_mark:
-* Add tests based on ~~[pytest](https://docs.pytest.org/en/latest/)~~ [Scrapy contracts](https://doc.scrapy.org/en/latest/topics/contracts.html) :construction:
-* Enable continous integration via [Travis CI](https://travis-ci.org) :construction:
-* Isolate app in Docker container :construction:
-* Include instructions for running containerized app on heroku, AWS, Azure and GCP :construction:
-* Add spider to parse port data :construction:
