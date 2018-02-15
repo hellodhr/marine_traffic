@@ -16,9 +16,9 @@ class PortSpider(CrawlSpider):
                 reader = csv.reader(f)
                 # skip header
                 next(reader, None)
-                # build start_urls from second column of csv file
+                # build start_urls from clean first column of csv file
                 start_urls = ["https://www.marinetraffic.com/en/ais/index/search/all?keyword=" +
-                              str(row[1]) for row in reader]
+                              str(row[0]).strip().lower() for row in reader]
 
     # define rule to follow links in search result pages
     rules = (
@@ -37,11 +37,21 @@ class PortSpider(CrawlSpider):
         """
 
         # parse general information
+        info_general = response.xpath("//div[starts-with(@class, 'bg-info')]")
         info_vessels = response.xpath("//table[@id='currvess']")
+        info_arrivals = response.xpath("//table[@id='recarr']")
+        info_expected = response.xpath("//table[@id='exparr']")
+        # use div id since wind forecast table does not have its own id
+        info_wind_forecast = response.xpath("//div[@id='tabs-wind-fore']//table")
 
-        # raw data
-        raw_keys = info_vessels.xpath(".//a/text()").extract()
-        raw_values = info_vessels.xpath("//a/@href").extract()
+
+        # extract specific information
+        raw_keys_general = info.general.xpath(".//span/text()").extract()
+        raw_values_general = info.general.xpath("//b/text()").extract()
+        raw_values_general2 = info_general.xpath("//b/a/text()").extract()
+
+        raw_keys_vessels = info_vessels.xpath(".//a/text()").extract()
+        raw_values_vessels = info_vessels.xpath("//a/@href").extract()
 
         # parse keys
         # raw_keys = list()
